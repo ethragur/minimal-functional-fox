@@ -1,37 +1,39 @@
- :root {
+@import url('file:///home/effi/.cache/wal/colors.css');
 
-   /* Minimal Functional Fox variables*/
-  --mff-bg: #292f36;
-  --mff-icon-color: #e0fbfc;
+:root {
+
+  /* Minimal Functional Fox variables*/
+  --mff-bg: var(--background);
+  --mff-icon-color: var(--foreground);
   --mff-nav-toolbar-padding: 8px;
   --mff-sidebar-bg: var(--mff-bg);
-  --mff-sidebar-color: #e0fbfc;
+  --mff-sidebar-color: var(--color6);
   --mff-tab-border-radius: 0px;
-  --mff-tab-color: #fefefa;
-  --mff-tab-font-family: "Cantarell", sans;
+  --mff-tab-color: var(--foreground);
+  --mff-tab-font-family: "FiraCode-Regular", sans;
   --mff-tab-font-size: 11pt;
   --mff-tab-font-weight: 400;
   --mff-tab-height: 32px;
-  --mff-tab-pinned-bg: #70c1b3;
-  --mff-tab-selected-bg: #ee6c4d;
-  --mff-tab-soundplaying-bg: #9c89b8;
-  --mff-urlbar-color: #98c1d9;
-  --mff-urlbar-focused-color: #e0fbfc;
-  --mff-urlbar-font-family: "Cantarell", serif;
+  --mff-tab-pinned-bg: var(--color1);
+  --mff-tab-selected-bg: var(--color4);
+  --mff-tab-soundplaying-bg: var(--color3);
+  --mff-urlbar-color: var(--foreground);
+  --mff-urlbar-focused-color: var(--color4);
+  --mff-urlbar-font-family: "FiraCode", sans;
   --mff-urlbar-font-size: 12pt;
   --mff-urlbar-font-weight: 700;
-  --mff-urlbar-results-color: #e0fbfc;
-  --mff-urlbar-results-font-family: "mononoki Nerd Font", serif;
+  --mff-urlbar-results-color: var(--foreground);
+  --mff-urlbar-results-font-family: "FiraCode", sans;
   --mff-urlbar-results-font-size: 12pt;
   --mff-urlbar-results-font-weight: 700;
-  --mff-urlbar-results-url-color: #98c1d9;
-  /*   --mff-tab-selected-bg: linear-gradient(90deg, rgba(232,74,95,1) 0%, rgba(255,132,124,1) 50%, rgba(254,206,168,1) 100%); */
-  /*   --mff-urlbar-font-weight: 600; */
+  --mff-urlbar-results-url-color: var(--color8);
+  /* --mff-tab-selected-bg: linear-gradient(90deg, rgba(232,74,95,1) 0%, rgba(255,132,124,1) 50%, rgba(254,206,168,1) 100%); */
+  --mff-urlbar-font-weight: 600;
 
   /* Overriden Firefox variables*/
   --autocomplete-popup-background: var(--mff-bg) !important;
   --default-arrowpanel-background: var(--mff-bg) !important;
-  --default-arrowpanel-color: #fefefa !important;
+  --default-arrowpanel-color: var(--foreground) !important;
   --lwt-toolbarbutton-icon-fill: var(--mff-icon-color) !important;
   --panel-disabled-color: #f9f9fa80;
   --toolbar-bgcolor: var(--mff-bg) !important;
@@ -39,45 +41,61 @@
 }
 
 /*
-  _____ _   ___ ___
- |_   _/_\ | _ ) __|
-   | |/ _ \| _ \__ \
-   |_/_/ \_\___/___/
+_____ _   ___ ___
+|_   _/_\ | _ ) __|
+| |/ _ \| _ \__ \
+|_/_/ \_\___/___/
 
-*/
-
-.tab-background[selected="true"] {
-  background: var(--mff-tab-selected-bg) !important;
-}
-
-.tab-background:not[visuallyselected] {
-  background: var(--mff-tab-selected-bg) !important;
-  opacity: 0.5 !important;
-}
-
-/* This positions the tabs under the navaigator container */
+ */
 #titlebar {
   -moz-box-ordinal-group: 3 !important;
 }
+.tab-background[selected="true"] {
+  /* background: var(--mff-tab-selected-bg) !important; */
+  background-color: transparent !important; -moz-appearance: -moz-win-glass !important; 
+}
+.tab-background {
+  background-color: transparent !important;
+}
+/* Make sure the background image of the tab bar is not visible as we want it transparent */
+#tabbrowser-tabs {
+  background-color: transparent !important;
+  background: transparent !important; -moz-appearance: -moz-win-glass !important;
+  color: var(--mf-bg) !important;
+  -moz-appearance: none !important;
+}
+
+
+#TabsToolbar {
+  padding: 2px;
+  background-color: transparent !important;
+  -moz-appearance: none !important;
+}
+
+.tab-background:not[visuallyselected] {
+  /* background: var(--mff-tab-selected-bg) !important; */
+  background-color: transparent !important; -moz-appearance: -moz-win-glass !important; 
+  /* opacity: 0.5 !important; */
+}
+
+/* .toolbar-items { */
+/* background-color: var(--mff-bg) !important; */
+/* } */
 
 .tabbrowser-tab::after,
 .tabbrowser-tab::before {
   border-left: none !important;
 }
-
 .tab-background {
   border: none !important;
 }
-
 .tabbrowser-arrowscrollbox {
   margin-inline-start: 4px !important;
   margin-inline-end: 0px !important;
 }
-
 .tab-close-button {
- display: none !important;
+  display: none !important;
 }
-
 .tab-text {
   font-family: var(--mff-tab-font-family);
   font-weight: var(--mff-tab-font-weight);
@@ -85,73 +103,69 @@
   color: var(--mff-tab-color);
 }
 
-/* Hide the favicon for tabs */
-hbox.tab-content .tab-icon-image {
-  display: none !important;
-}
-
-/* Show the favicon for tabs that are pinned */
 hbox.tab-content[pinned=true] .tab-icon-image {
   display: initial !important;
 }
-
 hbox.tab-content[pinned=true] .tab-text {
   display: none !important;
 }
-
-#tabbrowser-tabs {
-  --tab-loading-fill: #033433 !important;
-
-}
-
 .tab-label-container:not([textoverflow]) {
   display: flex;
   overflow: hidden;
   justify-content: center;
-width: 50% !important;
+  width: 50% !important;
   max-width: 50% !important;
   min-width: 50% !important;
 }
-
-/* .tab-label-container::after {
-  content: "?" !important;
-
-} */
-
 .tab-line {
   display: none !important;
 }
+/*
+
+
+
+
+
+
+
+#tabbrowser-tabs {
+--tab-loading-fill: #033433 !important;
+}
+
+
+
 
 .tabbrowser-tab {
-  border-radius: var(--mff-tab-border-radius) !important;
-  border-width: 0;
-  height: var(--mff-tab-height) !important;
-  margin-bottom: 4px !important;
-  margin-inline-end: 4px !important;
-  margin-top: 4px !important;
-  max-height: var(--mff-tab-height) !important;
-  min-height: var(--mff-tab-height) !important;
+border-radius: var(--mff-tab-border-radius) !important;
+border-width: 0;
+height: var(--mff-tab-height) !important;
+margin-bottom: 4px !important;
+margin-inline-end: 4px !important;
+margin-top: 4px !important;
+max-height: var(--mff-tab-height) !important;
+min-height: var(--mff-tab-height) !important;
 }
 
 .tabbrowser-tab[soundplaying="true"] {
-  background-color: var(--mff-tab-soundplaying-bg) !important;
+background-color: var(--mff-tab-soundplaying-bg) !important;
 }
 
 #tabs-newtab-button {
-  list-style-image: url("add.svg") !important;
-  opacity: 0.7;
+list-style-image: url("add.svg") !important;
+opacity: 0.7;
 }
 
 .tab-icon-sound {
-  display: none !important;
+display: none !important;
 }
+ */
 
 /*
-  _____ ___   ___  _    ___   _   ___
+_____ ___   ___  _    ___   _   ___
 |_   _/ _ \ / _ \| |  | _ ) /_\ | _ \
-  | || (_) | (_) | |__| _ \/ _ \|   /
-  |_| \___/ \___/|____|___/_/  \_\_|_\
-*/
+| || (_) | (_) | |__| _ \/ _ \|   /
+|_| \___/ \___/|____|___/_/  \_\_|_\
+ */
 
 .urlbar-icon > image {
   fill: var(--mff-icon-color) !important;
@@ -167,7 +181,7 @@ width: 50% !important;
 }
 
 .toolbarbutton-icon {
-/* filter: drop-shadow(0 0 0.75rem crimson); */
+  /* filter: drop-shadow(0 0 0.75rem crimson); */
 }
 
 #urlbar-results {
@@ -190,10 +204,6 @@ width: 50% !important;
   font-family: var(--mff-urlbar-font-family);
   font-weight: var(--mff-urlbar-results-font-weight);
   font-size: var(--mff-urlbar-font-size) !important;
-}
-
-.urlbarView-favicon, .urlbarView-type-icon {
-  display: none !important;
 }
 
 #urlbar-input {
@@ -226,7 +236,12 @@ toolbar {
 }
 
 #urlbar-background {
-  opacity: .98 !important;
+  opacity: .72 !important;
+}
+
+.urlbarView {
+  background-color: transparent !important;
+  backdrop-filter: blur(8px) !important;
 }
 
 #navigator-toolbox, toolbaritem {
@@ -238,9 +253,6 @@ toolbar {
   border: none !important;
 }
 
-.toolbar-items {
-  background-color: var(--mff-bg) !important;
-}
 
 #sidebar-search-container {
   background-color: var(--mff-sidebar-bg) !important;
@@ -297,11 +309,11 @@ toolbarbutton {
 
 
 /*
-  ___ ___ ___  ___ ___   _   ___
- / __|_ _|   \| __| _ ) /_\ | _ \
- \__ \| || |) | _|| _ \/ _ \|   /
- |___/___|___/|___|___/_/ \_\_|_\
-*/
+___ ___ ___  ___ ___   _   ___
+/ __|_ _|   \| __| _ ) /_\ | _ \
+\__ \| || |) | _|| _ \/ _ \|   /
+|___/___|___/|___|___/_/ \_\_|_\
+ */
 
 .close-icon, .urlbar-icon {
   fill: var(--mff-icon-color) !important;
@@ -312,7 +324,7 @@ toolbarbutton {
 }
 
 #sidebar-switcher-target {
-/*   color: white !important; */
+  /*   color: white !important; */
 }
 
 #sidebar-box {
@@ -334,10 +346,11 @@ image#sidebar-icon {
 
 
 /*
-    _   ___ ___  _____      _____  _   _  _ ___ _
-   /_\ | _ \ _ \/ _ \ \    / / _ \/_\ | \| | __| |
-  / _ \|   /   / (_) \ \/\/ /|  _/ _ \| .` | _|| |__
- /_/ \_\_|_\_|_\\___/ \_/\_/ |_|/_/ \_\_|\_|___|____|
+_   ___ ___  _____      _____  _   _  _ ___ _
+/_\ | _ \ _ \/ _ \ \    / / _ \/_\ | \| | __| |
+/ _ \|   /   / (_) \ \/\/ /|  _/ _ \| .` | _|| |__
+/_/ \_\_|_\_|_\\___/ \_/\_/ |_|/_/ \_\_|\_|___|____|
+
  */
 
 .panel-arrowcontent {
@@ -348,3 +361,15 @@ image#sidebar-icon {
 toolbarseparator {
   display: none;
 }
+
+#main-window { background-color: transparent !important; -moz-appearance: -moz-win-glass !important; }
+
+#browser-bottombox, #status-bar, #status-bar > *, #nav-bar, #PersonalToolbar, #addon-bar, #main-window[tabsontop="false"] ,
+#main-window[tabsontop="false"] #PersonalToolbar[collapsed="false"] + #TabsToolbar,
+#main-window[tabsontop="false"] [id^="__customToolbar"]:not([collapsed="true"]) 
+{
+  background: transparent !important; -moz-appearance: -moz-win-glass !important;
+  color: var(--mf-bg) !important;
+  -moz-appearance: none !important;
+}
+
